@@ -56,9 +56,13 @@ A Nomad job consists of a key number of elements, the example below is rendered 
 
 <img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/job-anatomy-04.png?raw=true">
 
-- region      : this is defined at server configuration level
-- data centers: specifies the data centers in the region that jobs are to be spread over
--  
+- region
+  Region are efined at server configuration level
+- data centers
+  Specify the data centers in the region that jobs are to be spread over
+-  group
+   Acts a container for speciying which tasks should be executed on the same client, this is analagous to a pod in Kubernetes parlance.
+-
 
 
 
