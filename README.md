@@ -31,24 +31,32 @@ Clusters can be multi region and the clients nodes can be grouped into [Node poo
 Users interact with Nomad clusters via jobs, these in turn encapsulate other constructs including tasks. The are a variety of ways for deploying jobs to a cluster
 and managing them, including:
 
-- Nomad REST API
-- Nomad CLI
-- Terraform provider for Nomad
-- Nomad Pack (analogous to Helm) 
+- [Nomad REST API](https://developer.hashicorp.com/nomad/api-docs)
+- [Nomad CLI](https://developer.hashicorp.com/nomad/docs/commands)
+- [Terraform provider for Nomad](https://registry.terraform.io/providers/hashicorp/nomad/latest/docs)
+- [Nomad Pack (analogous to Helm)](https://developer.hashicorp.com/nomad/tutorials/nomad-pack/nomad-pack-intro) 
 
 Nomad comes with an [ACL system](https://developer.hashicorp.com/nomad/tutorials/access-control/access-control) and the ability for node-to-node communications to be secured
 with [TLS](https://developer.hashicorp.com/nomad/tutorials/transport-security/security-enable-tls)
 
 ### Task Drivers
 
-A key differentiator between Nomad and other orchestrators such as Kubernetes is the fact that Nomad can orchestrate a wide variety of job types via task drivers. Simply put
+A key differentiator between Nomad and other orchestrators such as Kubernetes is the fact that Nomad can orchestrate a wide variety of job types via task drivers. Simply put,
 if a task driver exists for a schedulable entity, Nomad can orchestrate that entity. HashiCorp provides first party supported task drivers and the ecosystem also supports
 community written task drivers.
 
 <img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/task-drivers-03.png?raw=true">
 
 The [raw exec](https://developer.hashicorp.com/nomad/docs/drivers/raw_exec) tasks driver provides shell out like capabilities for running jobs, but should be used with caution
-due to the fact that any job that runs under this driver runs as the same user that the Nomad nodes run as, therefore isolated exec should generally be used in preference to this. 
+due to the fact that any job that runs under this driver runs as the same user that the Nomad nodes run as, therefore isolated exec should generally be used in preference to this.
+
+### Anatomy of a Job
+
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/client-server-arch-01.png?raw=true">
+
+
+
+
 
 ## Environment Build Instructions
 
