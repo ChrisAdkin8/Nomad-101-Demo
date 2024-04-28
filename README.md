@@ -13,7 +13,17 @@ This repo includes:
 Nomad is packaged as a single executable, it is written in GOLANG and generally runs anywhere that supports the Linux operating system, including IBM
 s390x based mainframes.
 
+A Nomad cluster consists of two main elements:
+
+- Client nodes, these make up the control plan
+- Worker nodes, where orchestrated jobs are run
+
 <img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/client-server-arch-01.png?raw=true">
+
+Cluster can be multi region and the clients nodes can be grouped into [Node pools](https://developer.hashicorp.com/nomad/docs/concepts/node-pools):
+
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/multi-region-02.png?raw=true">
+
 
 
 
