@@ -52,7 +52,13 @@ due to the fact that any job that runs under this driver runs as the same user t
 
 ### Anatomy of a Job
 
+A Nomad job consists of a key number of elements, the example below is rendered in Nomad HCL:
+
 <img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/job-anatomy-04.png?raw=true">
+
+- region      : this is defined at server configuration level
+- data centers: specifies the data centers in the region that jobs are to be spread over
+-  
 
 
 
