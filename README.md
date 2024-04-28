@@ -42,9 +42,13 @@ with [TLS](https://developer.hashicorp.com/nomad/tutorials/transport-security/se
 ### Task Drivers
 
 A key differentiator between Nomad and other orchestrators such as Kubernetes is the fact that Nomad can orchestrate a wide variety of job types via task drivers. Simply put
-if a task driver exists for a schedulable entity, Nomad can orchestrate that entity.
+if a task driver exists for a schedulable entity, Nomad can orchestrate that entity. HashiCorp provides first party supported task drivers and the ecosystem also supports
+community written task drivers.
 
 <img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/task-drivers-03.png?raw=true">
+
+The [raw exec](https://developer.hashicorp.com/nomad/docs/drivers/raw_exec) tasks driver provides shell out like capabilities for running jobs, but should be used with caution
+due to the fact that any job that runs under this driver runs as the same user that the Nomad nodes run as, therefore isolated exec should generally be used in preference to this. 
 
 ## Environment Build Instructions
 
