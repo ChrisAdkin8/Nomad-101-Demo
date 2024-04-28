@@ -20,12 +20,20 @@ A Nomad cluster consists of two main elements:
 
 <img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/client-server-arch-01.png?raw=true">
 
-Cluster can be multi region and the clients nodes can be grouped into [Node pools](https://developer.hashicorp.com/nomad/docs/concepts/node-pools):
+Clusters can be multi region and the clients nodes can be grouped into [Node pools](https://developer.hashicorp.com/nomad/docs/concepts/node-pools):
 
 <img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/multi-region-02.png?raw=true">
 
+Users interact with Nomad clusters via jobs, these in turn encapsulate other constructs including tasks. The are a variety of ways for deploying jobs to a cluster
+and managing them, including:
 
+- Nomad REST API
+- Nomad CLI
+- Terraform provider for Nomad
+- Nomad Pack (analogous to Helm) 
 
+Nomad comes with an [ACL system](https://developer.hashicorp.com/nomad/tutorials/access-control/access-control) and the ability for node-to-node communications to be secured
+with TLS
 
 
 
