@@ -52,7 +52,7 @@ due to the fact that any job that runs under this driver runs as the same user t
 
 ### Anatomy of a Job
 
-<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/client-server-arch-01.png?raw=true">
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/job-anatomy-04.png?raw=true">
 
 
 
