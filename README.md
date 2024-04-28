@@ -44,6 +44,7 @@ with [TLS](https://developer.hashicorp.com/nomad/tutorials/transport-security/se
 A key differentiator between Nomad and other orchestrators such as Kubernetes is the fact that Nomad can orchestrate a wide variety of job types via task drivers. Simply put
 if a task driver exists for a schedulable entity, Nomad can orchestrate that entity.
 
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/task-drivers-03.png?raw=true">
 
 ## Environment Build Instructions
 
