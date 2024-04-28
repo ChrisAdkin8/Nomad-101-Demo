@@ -8,7 +8,9 @@ This repo includes:
 - A terraform config for provisioning a 3 client / 3 server Nomad cluster in AWS
 - Some sample jobs
 
-## Core Nomad Concepts
+## Nomad Concepts
+
+### Core Architecture 101
 
 Nomad is packaged as a single executable, it is written in GOLANG and generally runs anywhere that supports the Linux operating system, including IBM
 s390x based mainframes.
