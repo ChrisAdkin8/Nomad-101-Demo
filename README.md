@@ -11,7 +11,9 @@ This repo includes:
 ## Core Nomad Concepts
 
 Nomad is packaged as a single executable, it is written in GOLANG and generally runs anywhere that supports the Linux operating system, including IBM
-s390x based mainframes:
+s390x based mainframes.
+
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/client-server-arch-01.png?raw=true">
 
 
 
