@@ -39,7 +39,10 @@ and managing them, including:
 Nomad comes with an [ACL system](https://developer.hashicorp.com/nomad/tutorials/access-control/access-control) and the ability for node-to-node communications to be secured
 with [TLS](https://developer.hashicorp.com/nomad/tutorials/transport-security/security-enable-tls)
 
+### Task Drivers
 
+A key differentiator between Nomad and other orchestrators such as Kubernetes is the fact that Nomad can orchestrate a wide variety of job types via task drivers. Simply put
+if a task driver exists for a schedulable entity, Nomad can orchestrate that entity.
 
 
 ## Environment Build Instructions
