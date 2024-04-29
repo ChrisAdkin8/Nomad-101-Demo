@@ -75,9 +75,13 @@ Full documentation on the complete set of job specification options can be found
 
 ### Workload Identity
 
-Nomad 1.7 introduced support for workload identities. Simply put, a JWT is generated:
+Nomad 1.7 introduced support for workload identities. Simply put, a JWT is generated that is unique for the allocation the job runs in. Allocations are used to map
+tasks in a job to client, refer to the Nomad documentation on [scheduling](https://developer.hashicorp.com/nomad/docs/concepts/scheduling/scheduling) for further information
+on this.
 
 <img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/workload-identity-06.png?raw=true">
+
+The primary use case of workload identity allow Nomad to authenticate with third party OIDC providers (including Vault and Consul).
 
 ## Terraform Config for Provisioning Nomad in AWS
 
