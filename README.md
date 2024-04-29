@@ -52,7 +52,7 @@ community written task drivers.
 The [raw exec](https://developer.hashicorp.com/nomad/docs/drivers/raw_exec) tasks driver provides shell out like capabilities for running jobs, but should be used with caution
 due to the fact that any job that runs under this driver runs as the same user that the Nomad nodes run as, therefore isolated exec should generally be used in preference to this.
 
-### Anatomy of a Job
+### Anatomy of a Basic Job
 
 A Nomad job consists of a key number of elements, the example below is rendered in Nomad HCL:
 
@@ -62,6 +62,8 @@ A Nomad job consists of a key number of elements, the example below is rendered 
   are defined at server configuration level.
 - **data centers**
   specifies the data centers in the region that jobs are to be spread over.
+- **type**
+  specifies the type of job, jobs intended to run idenfinitely specify a type of ```service``` as per the example
 - **group**
   acts a container for speciying which tasks should be executed on the same client, this is analagous to a pod in Kubernetes parlance.
 - **task**
