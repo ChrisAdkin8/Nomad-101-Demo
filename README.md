@@ -77,7 +77,7 @@ Full documentation on the complete set of job specification options can be found
 
 Nomad 1.7 introduced support for workload identities. Simply put, a JWT is generated:
 
-<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/workload_identity-05.png?raw=true">
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/workload-identity-06.png?raw=true">
 
 ## Terraform Config for Provisioning Nomad in AWS
 
