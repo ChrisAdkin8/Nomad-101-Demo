@@ -15,16 +15,18 @@ This repo includes:
 Nomad is packaged as a single executable, it is written in GOLANG and generally runs anywhere that supports the Linux operating system, including IBM
 s390x based mainframes.
 
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/light-weight-binary-01.png?raw=true">
+
 A Nomad cluster consists of two main elements:
 
 - Client nodes, these make up the control plan
 - Worker nodes, where orchestrated jobs are run
 
-<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/client-server-arch-01.png?raw=true">
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/client-server-arch-02.png?raw=true">
 
 Clusters can be multi region and the clients nodes can be grouped into [Node pools](https://developer.hashicorp.com/nomad/docs/concepts/node-pools):
 
-<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/multi-region-02.png?raw=true">
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/multi-region-03.png?raw=true">
 
 [Gossip protocol](https://developer.hashicorp.com/nomad/docs/concepts/gossip) plays a key part in the role of cluster node membership.
 
@@ -45,7 +47,7 @@ A key differentiator between Nomad and other orchestrators such as Kubernetes is
 if a task driver exists for a schedulable entity, Nomad can orchestrate that entity. HashiCorp provides first party supported task drivers and the ecosystem also supports
 community written task drivers.
 
-<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/task-drivers-03.png?raw=true">
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/task-drivers-04.png?raw=true">
 
 The [raw exec](https://developer.hashicorp.com/nomad/docs/drivers/raw_exec) tasks driver provides shell out like capabilities for running jobs, but should be used with caution
 due to the fact that any job that runs under this driver runs as the same user that the Nomad nodes run as, therefore isolated exec should generally be used in preference to this.
@@ -54,7 +56,7 @@ due to the fact that any job that runs under this driver runs as the same user t
 
 A Nomad job consists of a key number of elements, the example below is rendered in Nomad HCL:
 
-<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/job-anatomy-04.png?raw=true">
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/job-anatomy-05.png?raw=true">
 
 - **region**
   are defined at server configuration level.
