@@ -71,6 +71,14 @@ A Nomad job consists of a key number of elements, the example below is rendered 
 - **task driver**
   used by Nomad clients to execute a task and provide resource isolation.
 
+Full documentation on the complete set of job specification options can be found [here](https://developer.hashicorp.com/nomad/docs/job-specification).  
+
+### Workload Identity
+
+Nomad 1.7 introduced support for workload identities. Simply put, a JWT is generated:
+
+<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/workload_identity-05.png?raw=true">
+
 ## Terraform Config for Provisioning Nomad in AWS
 
 1. Clone this repo:
