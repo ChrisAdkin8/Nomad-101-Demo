@@ -81,7 +81,7 @@ on this.
 
 <img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/workload-identity-06.png?raw=true">
 
-The primary use case of workload identity allow Nomad to authenticate with third party OIDC providers (including Vault and Consul).
+The primary use case of workload identity allow Nomad to authenticate with third parties via OIDC (including Vault and Consul).
 
 ## Terraform Config for Provisioning Nomad in AWS
 
