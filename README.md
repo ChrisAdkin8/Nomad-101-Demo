@@ -73,11 +73,17 @@ A Nomad job consists of a key number of elements, the example below is rendered 
 
 Full documentation on the complete set of job specification options can be found [here](https://developer.hashicorp.com/nomad/docs/job-specification).  
 
+### Scheduling
+
+By default Nomad uses the bin packing algorithm in order to schedule jobs, however specific client nodes can be targetted via the [affinity stanza](https://developer.hashicorp.com/nomad/docs/job-specification/affinity)
+and allocations can be spread across data centers via the [spread stanza](https://developer.hashicorp.com/nomad/docs/job-specification/spread). Nomad 1.7 also introduces NUMA aware scheduling (Enterprise edition) which
+is useful for latency sensitive use cases such as low latency trading. An allocation is a core concept link to scheduling in Nomad, allocations are used to map tasks in a job to client.
+
+Refer to the Nomad documentation on [scheduling (https://developer.hashicorp.com/nomad/docs/concepts/scheduling/scheduling) for further information on this topic.
+
 ### Workload Identity
 
-Nomad 1.7 introduced support for workload identities. Simply put, a JWT is generated that is unique for the allocation the job runs in. Allocations are used to map
-tasks in a job to client, refer to the Nomad documentation on [scheduling](https://developer.hashicorp.com/nomad/docs/concepts/scheduling/scheduling) for further information
-on this.
+Nomad 1.7 introduced support for workload identities. Simply put, a JWT is generated that is unique for the allocation the job runs in. 
 
 <img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-101-Demo/blob/main/png_images/workload-identity-06.png?raw=true">
 
