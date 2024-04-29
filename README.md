@@ -69,13 +69,13 @@ A Nomad job consists of a key number of elements, the example below is rendered 
 - **task driver**
   used by Nomad clients to execute a task and provide resource isolation.
 
+## Terraform Config for Provisioning Nomad in AWS
+
+1. Clone this repo:
 
 
 
-
-## Environment Build Instructions
-
-1. Open the terraform.tfvars file and assign:
+2. Open the terraform.tfvars file and assign:
 - an AMI id to the ami variable, the default in the file is for Ubuntu 22.04 in the ```us-east-1``` region, leave this as is if this is the region being deployed to,
   otherwise change this as is appropriate
    
@@ -83,23 +83,6 @@ A Nomad job consists of a key number of elements, the example below is rendered 
 - `nomad_license`: the Nomad Enterprise license (only if using ENT version)
 - uncomment the Nomad Enterprise / Nomad OSS blocks as appropriate
 
-2. Log into HashiCorp Cloud Platform and create a service principal:
-<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-Vm-Workshop/blob/main/png_images/01-HCP-Consul-Sp.png?raw=true">
-
-3. Hit 'Create service principal key' for your service principal:
-<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-Vm-Workshop/blob/main/png_images/02-HCP-Create-Sp-Key.png?raw=true">
-
-4. Make a note the of the key's Client Id and Client Secret:
-<img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/ChrisAdkin8/Nomad-Vm-Workshop/blob/main/png_images/03-HCP-Sp-Key.png?raw=true">
-
-5. Specify environment variables for your HCP Client Id, Client secret and project:
-```
-export HCP_CLIENT_ID=<your client id>
-export HCP_CLIENT_SECRET=<the key generated>
-export HCP_PROJECT_ID=<your project id>
-```
-
-6. Clone this repo:
 ```
 $ git clone https://github.com/ChrisAdkin8/Nomad-Vm-Workshop.git
 ```
