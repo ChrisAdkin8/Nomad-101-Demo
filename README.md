@@ -73,71 +73,70 @@ A Nomad job consists of a key number of elements, the example below is rendered 
 
 1. Clone this repo:
 
+```
+$ git clone https://github.com/ChrisAdkin8/Nomad-101-Demo.git
+```
 
+2. cd into the Nomad-101-Demo/terraform directory.
 
-2. Open the terraform.tfvars file and assign:
+3. Open the terraform.tfvars file and assign:
 - an AMI id to the ami variable, the default in the file is for Ubuntu 22.04 in the ```us-east-1``` region, leave this as is if this is the region being deployed to,
   otherwise change this as is appropriate
-   
 - the string that this command generates to ```nomad_gossip_key``` in the ```terraform.tfvars``` file.
 - `nomad_license`: the Nomad Enterprise license (only if using ENT version)
 - uncomment the Nomad Enterprise / Nomad OSS blocks as appropriate
 
-```
-$ git clone https://github.com/ChrisAdkin8/Nomad-Vm-Workshop.git
-```
-
-7. Change directory to the certificates ca directory:
+4. Change directory to the certificates ca directory:
 ```
 $ cd terraform/certificates/ca
 ```
 
-8. Create the tls CA private key and certificate:
+5. Create the tls CA private key and certificate:
 ```
 $ nomad tls ca create
 ```
 
-9. Create the nomad server private key and certificate and move them to the servers directory:
+6. Create the nomad server private key and certificate and move them to the servers directory:
 ```
 $ nomad tls cert create -server -region global
 $ mv *server*.pem ../servers/.
 ```
 
-10. Create the nomad client private key and certificate and move them to the clients directory:
+7. Create the nomad client private key and certificate and move them to the clients directory:
 ```
 $ nomad tls cert create -client
 $ mv *client*.pem ../clients/.
 ```
 
-11. Create the nomad cli private key and certificate and move them to the cli directory:
+8. Create the nomad cli private key and certificate and move them to the cli directory:
 ```
 $ nomad tls cert create -cli
 $ mv *client*.pem ../cli/.
 ```
 
-12. Change directory to ```Nomad-Vm-Workshop/terraform```:
+9. Change directory to ```Nomad-Vm-Workshop/terraform```:
 ```
 $ cd ../..
 ```
 
-13. Specify the environment variables in order that terraform can connect to your AWS account:
+10. Specify the environment variables in order that terraform can connect to your AWS account:
 ```
 export AWS_ACCESS_KEY_ID=<your AWS access key ID>
 export AWS_SECRET_ACCESS_KEY=<your AWS secret access key>
 export AWS_SESSION_TOKEN=<your AWS session token>
 ```
 
-14. Install the provider plugins required by the configuration:
+11. Install the provider plugins required by the configuration:
 ```
 $ terraform init
 ```
     
-15. Apply the configuration, this will result in the creation of 23 new resources:
+12. Apply the configuration, this will result in the creation of 23 new resources:
 ```
 $ terraform apply -auto-approve
 ```
 
-16. The tail of the ```terraform apply``` output should look something like this:
+13. The tail of the ```terraform apply``` output should look something like this:
 ```
 Apply complete! Resources: 29 added, 0 changed, 0 destroyed.
 
@@ -160,12 +159,12 @@ EOT
 lb_address_consul_nomad = "http://54.172.43.18:4646"
 ```
 
-17. ssh access to the nomad cluster client and server EC2 instances can be achieved via:
+14. ssh access to the nomad cluster client and server EC2 instances can be achieved via:
 ```
 $ ssh -i certs/id_rsa.pem ubuntu@<client/server IP address>
 ```
 
-18. Once ssh'ed into one of the EC2 instances check that the nomad system unit is in a healthy state, note that depending on the EC2 instance you ssh onto, that instance may or may
+15. Once ssh'ed into one of the EC2 instances check that the nomad system unit is in a healthy state, note that depending on the EC2 instance you ssh onto, that instance may or may
     not be the current cluster leader:
 
 ```
@@ -192,16 +191,6 @@ Jan 08 11:42:25 ip-172-31-206-75 nomad[5617]:     2024-01-08T11:42:25.578Z [INFO
 Jan 08 11:42:25 ip-172-31-206-75 nomad[5617]:     2024-01-08T11:42:25.578Z [INFO]  nomad: eval broker status modified: paused=false
 Jan 08 11:42:25 ip-172-31-206-75 nomad[5617]:     2024-01-08T11:42:25.578Z [INFO]  nomad: blocked evals status modified: paused=false
 Jan 08 11:42:25 ip-172-31-206-75 nomad[5617]:     2024-01-08T11:42:25.817Z [INFO]  nomad.keyring: initialized keyring: id=56c026c8-0f96-fb71-5dca-20961686da10
-```
-
-19. Check that the consul agent system unit is in a healthy state:
-```
-$ systemctl status consul
-
-○ consul.service - "HashiCorp Consul - A service mesh solution"
-     Loaded: loaded (/lib/systemd/system/consul.service; disabled; vendor preset: enabled)
-     Active: inactive (dead)
-       Docs: https://www.consul.io/
 ```
 
 **Note**
@@ -240,76 +229,3 @@ ip-172-31-206-75.global  172.31.206.75  4648  alive   true    3             1.7.
 ip-172-31-74-132.global  172.31.74.132  4648  alive   false   3             1.7.2  dc1         global
 ip-172-31-81-190.global  172.31.81.190  4648  alive   false   3             1.7.2  dc1         global
 ```
-
-
-
-
-# NOMAD AWS DEMO
-
-This repo creates a **demo** Nomad cluster (OSS or ENT) on AWS.
-
-**This is not production ready and does not follow the security best practices!  
-Use for demo and testing purposes only**
-
-Features:
-- native service discovery (no consul)
-- AWS Cloud Auto-join
-- acl (disabled by default)
-- TLS (disabled by default)
-
-
-Most of the heavy litfing is performed by user_data, that renders two template files: one for the [servers](config/install-server.sh.tpl) and one of the [clients](config/install-client.sh.tpl)
-These scripts perform the installation, configuration and initialization of the cluster.
-
-
-## Configuration
-Defaults (see variables.tf for the full list):
-- server_count: `3`
-- client_count: `3`
-- nomad_ent: `true`
-- nomad_version: `1.6.1+ent-1`
-- retry_join: `"provider=aws tag_key=NomadAutoJoin tag_value=auto-join"`
-- nomad_acl_enabled: `false`
-- nomad_tls_enabled: `false`
-
-A ".auto.tfvars" file is used to override the required values. (this way terraform loads it automatically)  
-To start, copy the `terraform.auto.tfvars.example` file and name it `terraform.auto.tfvars` , then input the values.
-
-### Mandatory variables:
-
-- `key_name`: the name of an existing SSH keypair in AWS
-- `nomad_gossip_key`: generate one following [this guide](https://developer.hashicorp.com/nomad/tutorials/transport-security/security-gossip-encryption)
-- `nomad_license`: the Nomad Enterprise license (only if using ENT version)
-
-### Optional configuration
-#### enable ACL  
-to enable and bootstrap the ACL system set  
-`nomad_acl_enabled`: `true` 
-
-This enables authentication, therefore you'll need a token to make requests to Nomad.  
-Terraform performs the acl boostrap during the initial cluster creation and generates two tokens.  
-*These tokens are saved on the server leader at these paths:*  
-    - /home/ubuntu/nomad_bootstrap: the bootstap token  
-    - /home/ubuntu/nomad_user_token: a token with a limited scope
-
-To get the nomad bootstrap token, run the following on the leader server  
-`export NOMAD_TOKEN=$(cat /home/ubuntu/nomad_bootstrap)`
-
-
-#### enable TLS  
-Before being able to use this feature, you need to generate the CA and certificates required by Nomad.  
-The `create_tls_certificates.sh` script can do this for you, but you might need to add more [-additional-dnsname](https://developer.hashicorp.com/nomad/docs/commands/tls/cert-create#additional-dnsname) or [-additional-ipaddress](https://developer.hashicorp.com/nomad/docs/commands/tls/cert-create#additional-ipaddress) to match your environment.
-
-
-If you are using different names or paths for your certificates, change the related variables accordingly.
-
-set `nomad_tls_enabled: true` to enable TLS on the nomad cluster
-
-Follow then this [section of the guide](https://developer.hashicorp.com/nomad/tutorials/transport-security/security-enable-tls#running-with-tls) to configure your CLI (or set nomad_tls_verify_https_client to false)      
-
-## Run!
-to provision the cluster run  
-`terraform apply`
-
-The `user_data` execution on the remote servers and clients takes a few minutes to complete.  
-To check the progress ssh into the instance and `tail -f /var/log/cloud-init-output.log`
