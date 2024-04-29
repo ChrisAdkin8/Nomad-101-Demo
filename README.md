@@ -77,7 +77,7 @@ Full documentation on the complete set of job specification options can be found
 
 By default Nomad uses the bin packing algorithm in order to schedule jobs, however specific client nodes can be targetted via the [affinity stanza](https://developer.hashicorp.com/nomad/docs/job-specification/affinity)
 and allocations can be spread across data centers via the [spread stanza](https://developer.hashicorp.com/nomad/docs/job-specification/spread). Nomad 1.7 also introduces NUMA aware scheduling (Enterprise edition) which
-is useful for latency sensitive use cases such as low latency trading. An allocation is a core concept link to scheduling in Nomad, allocations are used to map tasks in a job to client.
+is useful for latency sensitive use cases such as low latency trading. An allocation is a core concept linked to scheduling in Nomad, allocations are used to map tasks in a job to client.
 
 Refer to the Nomad documentation on [scheduling (https://developer.hashicorp.com/nomad/docs/concepts/scheduling/scheduling) for further information on this topic.
 
