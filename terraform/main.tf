@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 data "aws_vpc" "default" {
-  default = true
+  default = true 
 }
 
 data "http" "myip" {

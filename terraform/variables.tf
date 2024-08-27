@@ -5,12 +5,16 @@ variable "name" {
 
 variable "region" {
   description = "The AWS region to deploy to."
-  default     = "us-east-1"
+  default     = "us-east-2"
+}
+
+variable "vpc_id" {
+  description = "Id of the EC2 VPC to use"
 }
 
 variable "ami" {
-  description = "Defaults to ubuntu 22.04 LTS on eu-east-1."
-  default     = "ami-080e1f13689e07408"
+  description = "Defaults to ubuntu 22.04 LTS on eu-east-2."
+  default     = "ami-0862be96e41dcbf74"
 }
 
 variable "retry_join" {
@@ -51,7 +55,7 @@ variable "root_block_device_size" {
 
 variable "nomad_version" {
   # default = "1.6.1+ent-1"
-  default = "1.7.7-1"
+  default = "1.8.3-1"
 }
 
 variable "nomad_ent" {

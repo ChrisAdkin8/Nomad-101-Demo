@@ -16,24 +16,28 @@ echo \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-
-# Java
-echo "install java"
-sudo add-apt-repository -y ppa:openjdk-r/ppa
-sudo apt-get update 
-sudo apt-get install -y openjdk-8-jdk
-JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
-
+sudo apt-get update -y
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin coreutils gpg
 
 echo "install hashicorp repo"
-sudo apt update -y && sudo apt install -y gpg
 wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt-get update -y
 sudo apt-get install -y nomad=${NOMAD_VERSION}
+
+# Java
+echo "install java"
+sudo add-apt-repository -y ppa:openjdk-r/ppa
+sudo apt-get update -y 
+sudo apt-get install -y openjdk-21-jdk
+JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+
+# exec2 task driver
+echo "install exec2 task driver"
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --yes --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) test" | sudo tee /etc/apt/sources.list.d/hashicorp-test.list
+sudo apt-get update -y && sudo apt-get install -y nomad-driver-exec2
 
 sudo cat << EOF > /etc/nomad.d/nomad.hcl
 
@@ -52,6 +56,12 @@ client {
    retry_join = ["${RETRY_JOIN}"]
   }
 
+}
+
+plugin "nomad-driver-exec2" {
+  config {
+    unveil_by_task  = true
+  }
 }
 
 acl {
